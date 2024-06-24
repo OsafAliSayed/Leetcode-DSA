@@ -1,11 +1,5 @@
 class Solution {
 public:
-    static void printMap(map<char, int> mp) {
-        for (auto i = mp.begin(); i != mp.end(); i++) {
-            cout << i->first << " : " << i->second << ", ";
-        }
-        cout << endl;
-    }
     int lengthOfLongestSubstring(string s) {
         map<char, int> mp;
         int maxLen = 0;
