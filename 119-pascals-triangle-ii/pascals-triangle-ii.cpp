@@ -2,9 +2,9 @@ class Solution {
 public:
     long long nCr(int n, int r) {
         long long val = 1;
-        for (int i = 1; i <= r; i++) {
-            val = val * (n - i + 1);
-            val = val / i;
+        for (int i = 0; i < r; i++) {
+            val = val * (n - i);
+            val = val / (i + 1);
         }
         return val;
     }
