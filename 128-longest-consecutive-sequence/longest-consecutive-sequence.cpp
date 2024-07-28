@@ -11,14 +11,13 @@ public:
         int maxLen = 0;
         int len = 0;
         for(auto itr: st) {
-            if (s.find(itr - 1) != s.end()) {
+            if (st.find(itr - 1) != st.end()) {
                 len++;
             }
             else {
                 len = 1;
             }
             maxLen = max(maxLen, len);
-            s.insert(itr);
         }
         return maxLen;
     }
