@@ -13,8 +13,7 @@ public:
                 sum += nums[j];
                 sum += nums[k];
                 if (sum == 0) {
-                    vector<int> temp({nums[i], nums[j], nums[k]});
-                    sol.push_back(temp);
+                    sol.push_back(vector<int>({nums[i], nums[j], nums[k]}));
 
                     j++;
                     k--;
