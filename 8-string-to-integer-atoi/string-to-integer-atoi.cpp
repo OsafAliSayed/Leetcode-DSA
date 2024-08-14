@@ -35,13 +35,7 @@ public:
             // if character is not in map
             if (mp.find(s[i]) == mp.end()) {
                     num = num * (long long)sign;
-                    if (num > INT_MAX) {
-                        return INT_MAX;
-                    }
-                    else if (num < INT_MIN) {
-                        return INT_MIN;
-                    }
-                    return num;
+                return num;
             }
             else {
                 num = (long long)num * 10 + (long long)mp[s[i]];
