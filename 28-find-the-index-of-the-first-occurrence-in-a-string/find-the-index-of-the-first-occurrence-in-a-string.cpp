@@ -1,5 +1,6 @@
 class Solution {
 public:
+    // Z Function implementation
     vector<int> zMatch(string s) {
         vector<int> z(s.size(), 0);
         int l = 0, r = 0;
