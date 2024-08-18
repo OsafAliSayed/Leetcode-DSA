@@ -1,35 +1,56 @@
 class Solution {
 public:
-    // Z Function implementation
-    vector<int> zMatch(string s) {
-        vector<int> z(s.size(), 0);
-        int l = 0, r = 0;
-        for (int i = 1; i < s.size(); i++) {
-            if (i < r) {
-                z[i] = z[i - l];
-
-                if (i + z[i] > r) {
-                    z[i] = r - i;
+    vector<int> generateLPS(string s) {
+        vector<int> lps(s.size(), 0);
+        int len = 0;
+        int i = 1;
+        while (i < s.size()) {
+            if (s[i] == s[len]) {
+                len++;
+                lps[i] = len;
+                i++;
+            }
+            else {
+                if (len != 0) {
+                    len = lps[len - 1];
+                }
+                else {
+                    i++;
                 }
             }
-    
-            while (i + z[i] < s.size() && s[z[i]] == s[i + z[i]]) z[i]++;
-
-            if (i + z[i] > r) {
-                l = i;
-                r = i + z[i];
-            }
         }
-        return z;
+        return lps;
     }
     int strStr(string haystack, string needle) {
-        string temp = needle + "$" + haystack;
-        vector<int> z = zMatch(temp);
-        for (auto itr: z) {
-            cout << itr << " ";
+        vector<int> lps = generateLPS(needle);
+        int i = 0; //iterator for haystack
+        int j = 0; //iterator for needle
+
+        // iterate only if the remaining portion of haystack is greater than the remaining portion of needle
+        while (haystack.length() - i >= needle.length() - j) {
+            if (haystack[i] == needle[j]) {
+                i++;
+                j++;
+            }
+
+            if (j == needle.length()) {
+                return i - j;
+            }
+
+            else if (i < haystack.length() && haystack[i] != needle[j]) {
+                // go to previous unmatch value if j != 0
+                if (j != 0) {
+                    j = lps[j - 1];
+                }
+                else {
+                    i++;
+                }
+            }
         }
-        for (int i = needle.length() + 1; i < z.size(); i++) {
-            if (z[i] == needle.length()) return i - needle.length() - 1;
+        return -1;
+
+        for (auto it: lps) {
+            cout << it << " ";
         }
         return -1;
     }
