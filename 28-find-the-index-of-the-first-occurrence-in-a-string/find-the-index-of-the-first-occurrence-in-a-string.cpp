@@ -1,5 +1,6 @@
 class Solution {
 public:
+    // KMP Algorithm
     vector<int> generateLPS(string s) {
         vector<int> lps(s.size(), 0);
         int len = 0;
